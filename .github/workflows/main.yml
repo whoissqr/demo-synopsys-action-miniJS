@@ -13,12 +13,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         
-      - name: npm install
+      - name: install dependency
         uses: actions/setup-node@v3
         with:
           node-version: 16
           cache: 'npm'
-      - run: npm install
+      - run: npm install --no-audit
 
       - name: Synopsys Action
         uses: synopsys-sig/synopsys-action@v0.1.0
