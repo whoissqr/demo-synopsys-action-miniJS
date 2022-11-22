@@ -17,7 +17,7 @@ jobs:
         with:
           polaris_serverUrl: ${{ secrets.POLARIS_SEVER_URL }}
           polaris_accessToken: ${{ secrets.POLARIS_ACCESS_TOKEN }}
-          polaris_application_name: "APAC-SG-github-demo"
+          polaris_application_name: "APAC-SG-github-demo2"
           polaris_project_name: "miniJS"
           polaris_assessment_types: '["SAST", "SCA"]'
           bridge_download_url: ${{ env.LINUX_BRIDGE_URL }}
