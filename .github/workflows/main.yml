@@ -23,7 +23,7 @@ jobs:
       - run: npm install --no-audit --no-fund --silent
 
       - name: Synopsys Action
-        uses: synopsys-sig/synopsys-action@v0.1.0
+        uses: synopsys-sig/synopsys-action@v0.2.0
         with:
           polaris_serverUrl: ${{ secrets.POLARIS_SEVER_URL }}
           polaris_accessToken: ${{ secrets.POLARIS_ACCESS_TOKEN }}
