@@ -32,5 +32,5 @@ jobs:
           polaris_assessment_types: '["SAST", "SCA"]'
           
       - name: print polaris_input.json
-        run: cat /tmp/synopsys-actionbcDIZI/polaris_input.json
+        run: cat /tmp/synopsys-action*/polaris_input.json
         
