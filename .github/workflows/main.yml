@@ -30,7 +30,7 @@ jobs:
           polaris_application_name: "APAC-SG-github-demo2"
           polaris_project_name: "miniJS"
           polaris_assessment_types: '["SAST", "SCA"]'
+
           
-      - name: print polaris_input.json
-        run: cat /tmp/synopsys-action*/polaris_input.json
+
         
