@@ -7,6 +7,7 @@ on:
 env:
   DETECT_PROJECT_NAME: shichao-GH-mini
   DETECT_PROJECT_VERSION_NAME: ${{ github.sha }}
+  DETECT_TOOLS: DETECTOR
   DETECT_TIMEOUT: 3000
   
 jobs:
