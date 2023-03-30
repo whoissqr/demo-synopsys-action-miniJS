@@ -3,7 +3,11 @@ name: Synopsys Security Testing
 on:  
   workflow_dispatch:
   pull_request:
-
+  
+env:
+  DETECT_PROJECT_NAME: shichao-GH-mini
+  DETECT_PROJECT_VERSION_NAME: ${{ github.sha }}
+  
 jobs:
   build:
     runs-on: ubuntu-latest
