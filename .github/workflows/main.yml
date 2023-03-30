@@ -23,13 +23,26 @@ jobs:
       - run: npm install --no-audit --no-fund --silent
 
       - name: Synopsys Action
-        uses: synopsys-sig/synopsys-action@v1.1.0
+        uses: synopsys-sig/synopsys-action@<version>
         with:
-          polaris_serverUrl: ${{ secrets.POLARIS_SEVER_URL }}
-          polaris_accessToken: ${{ secrets.POLARIS_ACCESS_TOKEN }}
-          polaris_application_name: "APAC-SG-github-demo2"
-          polaris_project_name: "miniJS"
-          polaris_assessment_types: "SCA,SAST"
+          blackduck_apiToken: ${{ secrets.BLACKDUCK_API_TOKEN }}
+          blackduck_url: ${{ secrets.BLACKDUCK_URL }}
+          
+          blackduck_scan_full: false
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          blackduck_automation_fixpr: true
+          blackduck_scan_failure_severities: "ALL"
+          blackduck_automation_prcomment: true
+        
+      
+   #   - name: Synopsys Action
+    #    uses: synopsys-sig/synopsys-action@v1.1.0
+     #   with:
+      #    polaris_serverUrl: ${{ secrets.POLARIS_SEVER_URL }}
+       #   polaris_accessToken: ${{ secrets.POLARIS_ACCESS_TOKEN }}
+        #  polaris_application_name: "APAC-SG-github-demo2"
+         # polaris_project_name: "miniJS"
+          #polaris_assessment_types: "SCA,SAST"
 
           
 
