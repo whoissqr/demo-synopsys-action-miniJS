@@ -8,7 +8,7 @@ on:
   
 env:
   DETECT_PROJECT_NAME: shichao-GH-mini
-  DETECT_PROJECT_VERSION_NAME: ${{ github.ref_name }}
+  DETECT_PROJECT_VERSION_NAME: main
   DETECT_TOOLS: DETECTOR
   DETECT_TIMEOUT: 3000
   
