@@ -30,7 +30,7 @@ jobs:
         uses: synopsys-sig/detect-action@main
         with:
           scan-mode: full
-          blackduck_scan_failure_severities: "ALL"
+          fail-on-all-policy-severities: "ALL"
           
           github-token: ${{ secrets.GITHUB_TOKEN }}
           detect-version: 7.12.0
