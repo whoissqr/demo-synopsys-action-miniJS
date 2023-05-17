@@ -32,7 +32,7 @@ jobs:
         env:
           DETECT_BLACKDUCK_RAPID_COMPARE_MODE: BOM_COMPARE_STRICT
         with:
-          blackduck_scan_full: false
+          scan-mode: RAPID
           github-token: ${{ secrets.GITHUB_TOKEN }}
           detect-version: 8.9.0
           blackduck-url: ${{ secrets.BLACKDUCK_URL }}
