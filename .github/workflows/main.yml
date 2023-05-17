@@ -44,7 +44,7 @@ jobs:
         with:
           blackduck_scan_full: true
           scan-mode: INTELLIGENT
-          blackduck_scan_failure_severities: "ALL"
+          fail-on-all-policy-severities: true
           
           github-token: ${{ secrets.GITHUB_TOKEN }}
           detect-version: 8.9.0
