@@ -25,8 +25,21 @@ jobs:
           node-version: 16
           cache: 'npm'
       - run: npm install --no-audit --no-fund --silent
+      
+      - name: Black Duck (Rapid scan)
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: synopsys-sig/detect-action@main
+        env:
+          DETECT_BLACKDUCK_RAPID_COMPARE_MODE: BOM_COMPARE_STRICT
+        with:
+          blackduck_scan_full: false
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          detect-version: 7.12.0
+          blackduck-url: ${{ secrets.BLACKDUCK_URL }}
+          blackduck-api-token: ${{ secrets.BLACKDUCK_API_TOKEN }}
 
       - name: Black Duck (Full scan)
+        if: ${{ github.event_name != 'pull_request' }}
         uses: synopsys-sig/detect-action@main
         with:
           blackduck_scan_full: true
@@ -36,5 +49,3 @@ jobs:
           detect-version: 7.12.0
           blackduck-api-token: ${{ secrets.BLACKDUCK_API_TOKEN }}
           blackduck-url: ${{ secrets.BLACKDUCK_URL }}
-          
-          
