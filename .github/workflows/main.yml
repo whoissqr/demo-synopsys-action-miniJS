@@ -29,10 +29,9 @@ jobs:
       - name: Black Duck (Rapid scan)
         if: ${{ github.event_name == 'pull_request' }}
         uses: synopsys-sig/detect-action@v1.2.0
-        env:
-          DETECT_BLACKDUCK_RAPID_COMPARE_MODE: BOM_COMPARE_STRICT
         with:
           scan-mode: RAPID
+          blackduck_automation_prcomment: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           detect-version: 8.9.0
           blackduck-url: ${{ secrets.BLACKDUCK_URL }}
