@@ -28,7 +28,7 @@ jobs:
       
       - name: Black Duck (Rapid scan)
         if: ${{ github.event_name == 'pull_request' }}
-        uses: synopsys-sig/detect-action@v1.2.0
+        uses: synopsys-sig/synopsys-action@v1.2.0
         with:
           scan-mode: RAPID
           blackduck_automation_prcomment: true
@@ -39,7 +39,7 @@ jobs:
 
       - name: Black Duck (Full scan)
         if: ${{ github.event_name != 'pull_request' }}
-        uses: synopsys-sig/detect-action@v1.2.0
+        uses: synopsys-sig/synopsys-action@v1.2.0
         with:
           scan-mode: INTELLIGENT
           fail-on-all-policy-severities: true
