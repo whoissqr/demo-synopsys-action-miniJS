@@ -34,7 +34,7 @@ jobs:
         with:
           blackduck_scan_full: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          detect-version: 7.12.0
+          detect-version: 8.9.0
           blackduck-url: ${{ secrets.BLACKDUCK_URL }}
           blackduck-api-token: ${{ secrets.BLACKDUCK_API_TOKEN }}
 
@@ -46,6 +46,6 @@ jobs:
           blackduck_scan_failure_severities: "ALL"
           
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          detect-version: 7.12.0
+          detect-version: 8.9.0
           blackduck-api-token: ${{ secrets.BLACKDUCK_API_TOKEN }}
           blackduck-url: ${{ secrets.BLACKDUCK_URL }}
