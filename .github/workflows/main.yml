@@ -38,7 +38,6 @@ jobs:
           blackduck_scan_failure_severities: "BLOCKER"
           
           include_diagnostics: true
-          bridge_download_version: 0.1.272
           github_token: ${{ secrets.GITHUB_TOKEN }}
           blackduck_url: ${{ secrets.BLACKDUCK_URL }}
           blackduck_apiToken: ${{ secrets.BLACKDUCK_API_TOKEN }}
