@@ -36,8 +36,8 @@ jobs:
           
           include_diagnostics: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          blackduck_url: ${{ secrets.BLACKDUCK_URL }}
-          blackduck_apiToken: ${{ secrets.BLACKDUCK_API_TOKEN }}
+          blackduck_url: ${{ secrets.BLACKDUCK_URL_SJ }}
+          blackduck_apiToken: ${{ secrets.BLACKDUCK_API_TOKEN_SJ }}
 
       - name: Black Duck (Full scan)
         if: ${{ github.event_name != 'pull_request' }}
@@ -48,6 +48,6 @@ jobs:
           blackduck_automation_fixpr: true
           
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          blackduck_url: ${{ secrets.BLACKDUCK_URL }}
-          blackduck_apiToken: ${{ secrets.BLACKDUCK_API_TOKEN }}
+          blackduck_url: ${{ secrets.BLACKDUCK_URL_SJ }}
+          blackduck_apiToken: ${{ secrets.BLACKDUCK_API_TOKEN_SJ }}
           
