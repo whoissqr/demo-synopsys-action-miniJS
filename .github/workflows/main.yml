@@ -1,53 +1,57 @@
-name: Synopsys Security Testing
+name: Synopsys Security Testing (Polaris SAST+SCA)
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master, develop, stage, release ]
   pull_request:
-    branches: [ main ]
-env:
-  DETECT_PROJECT_NAME: shichao-GH-mini
-  DETECT_PROJECT_VERSION_NAME: v1
-  DETECT_TOOLS: DETECTOR
-  DETECT_TIMEOUT: 3000
-  
-jobs:
+    branches: [ main, master, develop, stage, release ]
+  workflow_dispatch:
+
+jobs:      
   build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        
-      - name: install dependency
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: 'npm'
-      - run: npm install --no-audit --no-fund --silent
-      
-      - name: Black Duck (Rapid scan)
-        if: ${{ github.event_name == 'pull_request' }}
-        uses: synopsys-sig/synopsys-action@v1.2.0
-        with:
-          blackduck_scan_full: false
-          blackduck_automation_prcomment: true
-          # blackduck_scan_failure_severities: "BLOCKER"
-          
-          include_diagnostics: true
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          blackduck_url: ${{ secrets.BLACKDUCK_URL }}
-          blackduck_apiToken: ${{ secrets.BLACKDUCK_API_TOKEN }}
+    steps:      
+      -   uses: actions/checkout@v3
+      -   name: Set up JDK 17
+          uses: actions/setup-java@v3
+          with:
+              distribution: 'temurin'
+              java-version: 17
+              architecture: x64
+      -   name: Cache Maven packages
+          uses: actions/cache@v3.2.5
+          with:
+              path: ~/.m2
+              key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+              restore-keys: ${{ runner.os }}-m2-
+      -   name: Build with Maven
+          run: mvn --no-transfer-progress clean compile -DskipTests
 
-      - name: Black Duck (Full scan)
-        if: ${{ github.event_name != 'pull_request' }}
-        uses: synopsys-sig/synopsys-action@v1.2.0
-        with:
-          include_diagnostics: true
-          blackduck_scan_full: true
-          blackduck_scan_failure_severities: "ALL"
-          blackduck_automation_fixpr: true
-          
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          blackduck_url: ${{ secrets.BLACKDUCK_URL }}
-          blackduck_apiToken: ${{ secrets.BLACKDUCK_API_TOKEN }}
-          
+
+      -   name: Polaris Scan
+          uses: synopsys-sig/synopsys-action@v1.8.0
+          with:
+            ### SCANNING: Required fields
+            polaris_server_url: ${{ secrets.POLARIS_SERVER_URL }}
+            polaris_access_token: ${{ secrets.POLARIS_ACCESS_TOKEN }}
+            polaris_application_name: "APAC-SG-github-demo"
+            polaris_project_name: "WebGoat"
+            polaris_assessment_types: "SCA,SAST"
+            
+      -   name: Polaris PR Scan
+          if: ${{ github.event_name == 'pull_request' }}
+          uses: synopsys-sig/synopsys-action@v1.8.0
+          with:
+            ### SCANNING: Required fields
+            polaris_server_url: ${{ secrets.POLARIS_SERVER_URL }}
+            polaris_access_token: ${{ secrets.POLARIS_ACCESS_TOKEN }}
+            polaris_application_name: "APAC-SG-github-demo"
+            polaris_project_name: "mini-JS"
+            polaris_assessment_types: "SCA,SAST"
+            
+            ### Below configuration is used to enable feedback from Polaris security testing as pull request comment
+            polaris_prComment_enabled: true 
+            github_token: ${{ secrets.GITHUB_TOKEN }} 
+
+
+        
