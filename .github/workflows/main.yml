@@ -30,11 +30,18 @@ jobs:
             polaris_application_name: "APAC-SG-github-demo"
             polaris_project_name: "WebGoat"
             polaris_assessment_types: "SCA,SAST"
-            github_token: ${{ secrets.GITHUB_TOKEN }} 
             
-            ### SARIF report parameters
-            polaris_reports_sarif_create: true
-            polaris_upload_sarif_report: true
+          ### Uncomment below configuration if Synopsys Bridge diagnostic files needs to be uploaded
+            include_diagnostics: true
+
+          ### SARIF report generation and upload to GitHub Adavanced Security Tab: Uncomment below to enable
+            polaris_reports_sarif_create: true  
+            polaris_reports_sarif_file_path: '/Users/tmp/report.sarif.json' # File path (including file name) where SARIF report is created.
+            polaris_reports_sarif_severities: "CRITICAL,HIGH"
+            polaris_reports_sarif_groupSCAIssues: true 
+            polaris_reports_sarif_issue_types: 'SCA, SAST' 
+            polaris_upload_sarif_report: true 
+            github_token: ${{ secrets.GITHUB_TOKEN }}
             
       -   name: Polaris PR Scan
           if: ${{ github.event_name == 'pull_request' }}
