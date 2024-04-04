@@ -37,7 +37,6 @@ jobs:
           ### SARIF report generation and upload to GitHub Adavanced Security Tab
           polaris_reports_sarif_create: true  
           polaris_reports_sarif_groupSCAIssues: true 
-          # polaris_reports_sarif_issue_types: 'SCA, SAST'
           polaris_upload_sarif_report: true
 
 
