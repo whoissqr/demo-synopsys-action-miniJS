@@ -30,6 +30,7 @@ jobs:
             polaris_application_name: "APAC-SG-github-demo"
             polaris_project_name: "WebGoat"
             polaris_assessment_types: "SCA,SAST"
+            github_token: ${{ secrets.GITHUB_TOKEN }} 
             
             ### SARIF report parameters
             polaris_reports_sarif_create: true
