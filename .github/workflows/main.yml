@@ -31,6 +31,7 @@ jobs:
           polaris_project_name: "WebGoat"
           polaris_assessment_types: "SCA,SAST"
           polaris_prComment_enabled: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
+          polaris_prComment_severities: "high,critical,medium,low"
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
           ### SARIF report generation and upload to GitHub Adavanced Security Tab
