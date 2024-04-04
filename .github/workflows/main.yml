@@ -31,6 +31,10 @@ jobs:
             polaris_project_name: "WebGoat"
             polaris_assessment_types: "SCA,SAST"
             
+            ### SARIF report parameters
+            polaris_reports_sarif_create: true
+            polaris_upload_sarif_report: true
+            
       -   name: Polaris PR Scan
           if: ${{ github.event_name == 'pull_request' }}
           uses: synopsys-sig/synopsys-action@v1.8.0
