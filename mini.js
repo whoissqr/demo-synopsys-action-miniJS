@@ -1,6 +1,12 @@
 // Copyright (c) 2017 Synopsys, Inc. All rights reserved worldwide.
 'use strict';
 
+function newFunc1() {
+    let query = "SELECT * FROM " + testsource9() + " WHERE col=1"; //#defect#SA.SQLI
+    //let query = "SELECT * FROM ? WHERE col=1, [testsource9()]" //attempted FIX, sqr
+    return query;
+}
+
 function testsource()
 {
     return location.hash;
