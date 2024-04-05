@@ -329,3 +329,8 @@ app.get('/test9', function (req, res) {
   }
 });
 
+function newFunc1() {
+    let query = "SELECT * FROM " + testsource9() + " WHERE col=1"; //#defect#SA.SQLI
+    //let query = "SELECT * FROM ? WHERE col=1, [testsource9()]" //attempted FIX, sqr
+    return query;
+}
