@@ -14,15 +14,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         
-      - name: install dependency
+      - name: install npm
         uses: actions/setup-node@v3
         with:
           node-version: 16
           cache: 'npm'
-      - run: npm install --no-audit --no-fund --silent
-
-      - name: Install dependencies
+          
+      - name: install dependency
         run: |
+          npm install --no-audit --no-fund --silent
           mkdir ./sarifs
           mkdir ./processed-sarifs
 
@@ -43,7 +43,7 @@ jobs:
           polaris_reports_sarif_create: ${{ github.event_name != 'pull_request' && 'true' || 'false' }}
           polaris_reports_sarif_groupSCAIssues: ${{ github.event_name != 'pull_request' && 'true' || 'false' }} 
           polaris_upload_sarif_report: ${{ github.event_name != 'pull_request' && 'true' || 'false' }}
-          polaris_reports_sarif_file_path: '/sarifs/report.sarif.json'
+          polaris_reports_sarif_file_path: './sarifs/report.sarif.json'
 
 
       - name: Add SCW Training
