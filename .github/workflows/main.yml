@@ -21,6 +21,11 @@ jobs:
           cache: 'npm'
       - run: npm install --no-audit --no-fund --silent
 
+      - name: Install dependencies
+        run: |
+          mkdir ./sarifs
+          mkdir ./processed-sarifs
+
       - name: Polaris Scan
         uses: synopsys-sig/synopsys-action@v1.8.0
         with:
