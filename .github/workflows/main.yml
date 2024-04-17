@@ -38,7 +38,25 @@ jobs:
           polaris_reports_sarif_create: ${{ github.event_name != 'pull_request' && 'true' || 'false' }}
           polaris_reports_sarif_groupSCAIssues: ${{ github.event_name != 'pull_request' && 'true' || 'false' }} 
           polaris_upload_sarif_report: ${{ github.event_name != 'pull_request' && 'true' || 'false' }}
+          polaris_reports_sarif_file_path: '/sarifs/report.sarif.json'
 
 
-
-        
+      - name: Add SCW Training
+        uses: SecureCodeWarrior/github-action-add-sarif-contextual-training@v1
+        with:
+          inputSarifFile: ./sarifs/*.json
+          outputSarifFile: ./processed-sarifs
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: list processed SARIF files
+        run: |
+          echo 'SARIF input . . .'
+          ls ./sarifs
+          echo 'SARIFoutput . . .'
+          ls ./processed-sarifs
+          
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ./processed-sarifs
+          category: AppSec
