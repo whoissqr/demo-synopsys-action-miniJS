@@ -55,6 +55,7 @@ jobs:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
       
       - name: list processed SARIF files
+        if: always()
         run: |
           echo 'SARIF input . . .'
           ls ./sarifs
@@ -63,6 +64,7 @@ jobs:
           
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v2
+        if: always()
         with:
           sarif_file: ./processed-sarifs
           category: AppSec
