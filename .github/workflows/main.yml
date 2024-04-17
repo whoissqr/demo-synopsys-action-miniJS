@@ -48,6 +48,7 @@ jobs:
 
       - name: Add SCW Training
         uses: SecureCodeWarrior/github-action-add-sarif-contextual-training@v1
+        if: always()
         with:
           inputSarifFile: ./sarifs/*.json
           outputSarifFile: ./processed-sarifs
