@@ -35,14 +35,14 @@ jobs:
           polaris_application_name: "APAC-SG-github-demo"
           polaris_project_name: "WebGoat"
           polaris_assessment_types: "SCA,SAST"
-          polaris_prComment_enabled: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
+          polaris_prComment_enabled: true
           polaris_prComment_severities: "high,critical,medium,low"
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
           ### SARIF report generation and upload to GitHub Adavanced Security Tab
-          polaris_reports_sarif_create: ${{ github.event_name != 'pull_request' && 'true' || 'false' }}
-          polaris_reports_sarif_groupSCAIssues: ${{ github.event_name != 'pull_request' && 'true' || 'false' }} 
-          polaris_upload_sarif_report: ${{ github.event_name != 'pull_request' && 'true' || 'false' }}
+          polaris_reports_sarif_create: true
+          polaris_reports_sarif_groupSCAIssues: true
+          polaris_upload_sarif_report: true
           polaris_reports_sarif_file_path: './sarifs/report.sarif.json'
 
 
