@@ -46,7 +46,6 @@ jobs:
           polaris_upload_sarif_report: true
           polaris_reports_sarif_file_path: './sarifs/report.sarif.json'
 
-
       - name: Add SCW Training
         uses: SecureCodeWarrior/github-action-add-sarif-contextual-training@v1
         if: always()
@@ -54,6 +53,11 @@ jobs:
           inputSarifFile: ./sarifs/*.json
           outputSarifFile: ./processed-sarifs
           githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: DBG only
+        run: |
+          ls -lrt ./sarifs
+          ls -lrt ./processed-sarifs
           
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v3
