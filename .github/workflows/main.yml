@@ -55,6 +55,7 @@ jobs:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
 
       - name: DBG only
+        if: always()
         run: |
           ls -lrt ./sarifs
           ls -lrt ./processed-sarifs
