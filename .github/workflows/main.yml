@@ -1,4 +1,4 @@
-name: Synopsys Security Testing (Polaris SAST+SCA)
+name: Polaris [SAST, SCA]
 
 on:
   push:
