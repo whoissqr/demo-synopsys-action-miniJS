@@ -27,6 +27,7 @@ jobs:
           
           ### FIX PULL REQUEST CREATION: Uncomment below to enable
           blackduck_fixpr_enabled: true
+          blackduck_automation_fixpr: true
           github_token: ${{ secrets.GITHUB_TOKEN }} # Required when Fix PRs is enabled
           
           blackduck_prcomment_enabled: true 
