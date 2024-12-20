@@ -39,17 +39,13 @@ jobs:
           blackducksca_token: ${{ secrets.BLACKDUCK_TOKEN }}
          
           ### SCANNING: Optional fields
-          # blackducksca_scan_failure_severities: 'BLOCKER,CRITICAL'
+          blackducksca_scan_failure_severities: 'BLOCKER,CRITICAL'
           
           ### FIX PULL REQUEST CREATION: Uncomment below to enable
-          # blackducksca_fixpr_enabled: true
-          # github_token: ${{ secrets.GITHUB_TOKEN }} # Required when Fix PRs is enabled
-          
-          ### PULL REQUEST COMMENTS: Uncomment below to enable
-          # blackducksca_prcomment_enabled: true 
-          # github_token: ${{ secrets.GITHUB_TOKEN }} # Required when PR comments is enabled
+          blackducksca_fixpr_enabled: true
+          blackducksca_prcomment_enabled: true 
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
 
           ### SARIF report generation and upload to GitHub Adavanced Security: Uncomment below to enable
-          # blackducksca_reports_sarif_create: true # Create Black Duck SCA SARIF report and upload it as artifact
-          # blackducksca_upload_sarif_report: true  # Upload Black Duck SCA SARIF report in GitHub Advanced Security tab
-          # github_token: ${{ secrets.GITHUB_TOKEN }} # Required when blackducksca_upload_sarif_report is set as true
+          blackducksca_reports_sarif_create: true # Create Black Duck SCA SARIF report and upload it as artifact
+          blackducksca_upload_sarif_report: true  # Upload Black Duck SCA SARIF report in GitHub Advanced Security tab
