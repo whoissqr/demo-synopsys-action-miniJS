@@ -24,8 +24,6 @@ jobs:
       - name: install dependency
         run: |
           npm install --no-audit --no-fund --silent
-          mkdir ./sarifs
-          mkdir ./processed-sarifs
           
       - name: Polaris Scan
         uses: blackduck-inc/black-duck-security-scan@v2.0.0
